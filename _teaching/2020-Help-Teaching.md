@@ -5,9 +5,8 @@ type:
 permalink: /teaching/2020-P1-Teaching
 venue: 
 location: 
+date: 2020-11-01
 ---
-I have been practising as tutor for many Computer Science B.Sc. courses at University of Salerno. I offer support for course projects, give additional theoretical and practical insights and be available for any questions and request for clarification.
-
 | Course                          | Degree       | Period      | Professor                     |
 |---------------------------------|--------------|-------------|-------------------------------|
 | Programming 101                 | B.Sc. Degree | Fall 2020   | Prof. M. Tucci and R. Distasi |
