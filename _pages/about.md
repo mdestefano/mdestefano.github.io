@@ -12,11 +12,13 @@ I was born in Avellino (Italy) on November 29th, 1996. Currently, I am a Ph.D. S
 
 Research Interests
  ======
+ 
 My main research area is Software Maintenance and Evolution with a particular interest in Software Code Quality, Software Architecture, and Software Development Communities.
 
 
 Education
  ======
+ 
 * B.S. in Computer Science, University of Salerno, 2018
 * M.S. in Computer Science, University of Salerno, 2018
 * Ph.D in Computer Science, University of Salerno, Ongoing
