@@ -3,9 +3,8 @@ title: "Teaching Assistant "
 collection: teaching
 type: 
 permalink: /teaching/2020-P1-Teaching
-venue: 
-location: 
-date: 2020-11-01
+venue: University of Salerno
+location: Italy
 ---
 | Course                          | Degree       | Period      | Professor                     |
 |---------------------------------|--------------|-------------|-------------------------------|
