@@ -5,6 +5,7 @@ type:
 permalink: /teaching/2020-P1-Teaching
 venue: University of Salerno
 location: Italy
+date: [2018, 2020]
 ---
 | Course                          | Degree       | Period      | Professor                     |
 |---------------------------------|--------------|-------------|-------------------------------|
