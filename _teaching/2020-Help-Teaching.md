@@ -4,7 +4,6 @@ collection: teaching
 type: 
 permalink: /teaching/2020-P1-Teaching
 venue: 
-date: 
 location: 
 ---
 I have been practising as tutor for many Computer Science B.Sc. courses at University of Salerno. I offer support for course projects, give additional theoretical and practical insights and be available for any questions and request for clarification.
