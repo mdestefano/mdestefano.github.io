@@ -7,8 +7,6 @@ author_profile: true
 
 {% include base_path %}
 
-# Teaching
-
 ## Teaching Assistant
 
 | Course                          | Degree       | Period      | Professor                     |
