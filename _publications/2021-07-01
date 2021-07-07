@@ -1,0 +1,19 @@
+---
+title: "Comparing Within- and Cross-Project Machine Learning Algorithms for Code Smell Detection"
+collection: publications
+permalink: /publication/2020-06-27-W1
+excerpt: 'M. De Stefano, F. Pecorelli, F. Palomba, A. De Lucia'
+date: 2021-07-01
+venue: 'International Workshop on Machine Learning Techniques for Software Quality Evolution (Preprint)'
+paperurl: 'http://mdestefano.github.io/files/W2.pdf'
+---
+## Abstract
+Code smells represent a well-known problem in software engineering, since they are a notorious cause of loss of comprehensibility and maintainability. 
+The most recent efforts in devising automatic machine learning-based code smell detection techniques have achieved unsatisfying results so far. 
+This could be explained by the fact that all these approaches follow a within-project classification, i.e., training and test data are taken from the same source project, which combined with the imbalanced nature of the problem, produces datasets with a very low number of instances belonging to the minority class (i.e., smelly instances).
+In this paper, we propose a cross-project machine learning approach and compare its performance with a within-project alternative.
+The core idea is to use transfer learning to increase the overall number of smelly instances in the training datasets.
+Our results have shown that cross-project classification provides very similar performance with respect to within-project.
+Despite this finding does not yet provide a step forward in increasing the performance of ML techniques for code smell detection, it sets the basis for further investigations.
+
+[Download preprint here](http://mdestefano.github.io/files/W2.pdf)
