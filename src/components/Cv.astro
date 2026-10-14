@@ -1,0 +1,508 @@
+---
+// Curriculum bilingue: le pagine passano solo la lingua, tutto il contenuto sta qui.
+interface Props { lang: "it" | "en" }
+const { lang } = Astro.props;
+
+const links = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/m-destefano/" },
+  { label: "Google Scholar", href: "https://scholar.google.com/citations?user=6fELld4AAAAJ&hl=it" },
+  { label: "GitHub", href: "https://github.com/mdestefano" },
+  { label: "X", href: "https://twitter.com/ManuelDeStefan0" },
+];
+
+// ponytail: "oggi" è la data della build; il diagramma si aggiorna a ogni deploy.
+const now = new Date();
+const axisFrom = 2020;
+const axisTo = now.getFullYear() + 1;
+const pos = (y: number, m: number) => ((y - axisFrom) * 12 + (m - 1)) / ((axisTo - axisFrom) * 12) * 100;
+const years = Array.from({ length: axisTo - axisFrom }, (_, i) => axisFrom + i);
+
+const jobs = [
+  { id: "ai", color: "orange", from: [2025, 3], to: null },
+  { id: "data", color: "lime", from: [2023, 9], to: [2025, 3] },
+  { id: "phd", color: "cobalt", from: [2020, 11], to: [2024, 3] },
+] as const;
+
+const T = {
+  it: {
+    title: "Manuel De Stefano, PhD — AI & Data Engineer",
+    description: "Curriculum di Manuel De Stefano, AI & Data Engineer in CINECA e dottore di ricerca in Informatica.",
+    nav: { exp: "Esperienza", edu: "Formazione", skills: "Competenze", langs: "Lingue" },
+    otherLang: { label: "EN", name: "English", href: "/en/" },
+    role: "AI & Data Engineer",
+    intro: [
+      "Lavoro in CINECA dal 2023, prima come data engineer e oggi come AI engineer.",
+      "Il dottorato in ingegneria del software empirica mi ha formato come ricercatore: raccolgo dati, li analizzo con metodi statistici e ne ricavo conclusioni verificabili. Oggi uso lo stesso metodo per validare la correttezza degli strumenti di AI, con metriche e test sistematici, anche in applicativi ad alta sensibilità.",
+    ],
+    timeline: "La carriera, anno per anno",
+    today: "oggi",
+    exp: {
+      ai: {
+        title: "AI Software Engineer", org: "CINECA, Roma", short: "AI Software Engineer · CINECA", when: "mar 2025 – oggi",
+        items: [
+          "Ho contribuito a realizzare un'infrastruttura per gestire chatbot RAG (Retrieval-Augmented Generation) dedicati a più atenei, su Azure OpenAI.",
+          "Ho esteso i chatbot da semplici assistenti a strumenti integrati con i sistemi gestionali che CINECA offre alle università.",
+          "Ho sviluppato strumenti di automazione per la gestione delle richieste di assistenza (ticket).",
+          "Ho realizzato un software interno per raccogliere e definire requisiti funzionali in formato strutturato, per analisti, requirement manager e product owner.",
+          "Curo la valutazione sistematica (evals) degli strumenti di AI: definisco metriche e test per misurarne correttezza e affidabilità.",
+        ],
+        tech: ["Vercel AI SDK", "Python", "LangChain", "SDK OpenAI", "Azure OpenAI"],
+      },
+      data: {
+        title: "Data Engineer", org: "CINECA, Roma", short: "Data Engineer · CINECA", when: "set 2023 – mar 2025",
+        items: [
+          "Ho partecipato alla costruzione della nuova piattaforma dati su Microsoft Azure per i dati degli atenei.",
+          "Ho migrato i flussi di caricamento e trasformazione dei dati (ETL) su Azure Data Factory e Databricks.",
+          "Ho lavorato a stretto contatto con il team di analisti, che usava la piattaforma per data warehouse e analisi.",
+        ],
+        tech: ["Microsoft Azure", "Azure Data Factory", "Databricks", "SQL", "Python"],
+      },
+      phd: {
+        title: "Dottorando di ricerca in Informatica", org: "Università degli Studi di Salerno", short: "Dottorato · Salerno", when: "nov 2020 – mar 2024",
+        items: [
+          "Ricerca in ingegneria del software empirica, con focus sul software per computer quantistici.",
+          "Ho condotto studi su larga scala: estrazione di dati da repository GitHub, analisi statistica, classificazione qualitativa.",
+          "Ho pubblicato e presentato lavori su riviste e conferenze internazionali. L'elenco è su Google Scholar.",
+        ],
+        tech: [],
+      },
+    },
+    techLabel: "Tecnologie",
+    edu: [
+      { title: "Dottorato di ricerca in Informatica", org: "Università degli Studi di Salerno", when: "2020 – 2024", note: "" },
+      { title: "Laurea Magistrale in Informatica", org: "Università degli Studi di Salerno", when: "2018 – 2020", note: "110 e lode" },
+    ],
+    skills: [
+      { name: "Analisi quantitativa", items: ["Analisi statistica", "Studi empirici", "Progettazione di survey", "Definizione di metriche", "Valutazione sistematica"] },
+      { name: "Intelligenza artificiale", items: ["Azure OpenAI", "Vercel AI SDK", "LangChain", "SDK OpenAI", "Valutazione di sistemi AI (evals)"] },
+      { name: "Dati e cloud", items: ["Python", "SQL", "Microsoft Azure", "Azure Data Factory", "Databricks", "ETL", "Docker", "Git"] },
+      { name: "Trasversali", items: ["Ricerca e sviluppo", "Scrittura tecnica", "Presentazioni a conferenze", "Lavoro con team di analisti"] },
+    ],
+    langs: [
+      { name: "Italiano", level: "Madrelingua" },
+      { name: "Inglese", level: "C1", note: "Esame sostenuto durante il dottorato" },
+    ],
+    profiles: "Profili",
+    close: "Per contattarmi, scrivimi su LinkedIn.",
+  },
+  en: {
+    title: "Manuel De Stefano, PhD — AI & Data Engineer",
+    description: "Résumé of Manuel De Stefano, AI & Data Engineer at CINECA with a PhD in Computer Science.",
+    nav: { exp: "Experience", edu: "Education", skills: "Skills", langs: "Languages" },
+    otherLang: { label: "IT", name: "Italiano", href: "/" },
+    role: "AI & Data Engineer",
+    intro: [
+      "I have worked at CINECA since 2023, first as a data engineer and now as an AI engineer.",
+      "My PhD in empirical software engineering trained me as a researcher: I collect data, analyse it with statistical methods and draw verifiable conclusions. Today I apply the same method to validate the correctness of AI tools, with metrics and systematic tests, including in high-sensitivity applications.",
+    ],
+    timeline: "My career, year by year",
+    today: "today",
+    exp: {
+      ai: {
+        title: "AI Software Engineer", org: "CINECA, Rome", short: "AI Software Engineer · CINECA", when: "Mar 2025 – present",
+        items: [
+          "I helped build an infrastructure to run RAG (Retrieval-Augmented Generation) chatbots for several universities, on Azure OpenAI.",
+          "I extended the chatbots from simple assistants into tools integrated with the management systems CINECA provides to universities.",
+          "I built automation tools to handle support requests (tickets).",
+          "I built an internal tool to collect and define functional requirements in a structured format, for analysts, requirement managers and product owners.",
+          "I run the systematic evaluation (evals) of AI tools: I define metrics and tests to measure their correctness and reliability.",
+        ],
+        tech: ["Vercel AI SDK", "Python", "LangChain", "OpenAI SDK", "Azure OpenAI"],
+      },
+      data: {
+        title: "Data Engineer", org: "CINECA, Rome", short: "Data Engineer · CINECA", when: "Sep 2023 – Mar 2025",
+        items: [
+          "I helped build the new data platform on Microsoft Azure for university data.",
+          "I migrated the data loading and transformation pipelines (ETL) to Azure Data Factory and Databricks.",
+          "I worked closely with the analyst team, who used the platform for data warehousing and analysis.",
+        ],
+        tech: ["Microsoft Azure", "Azure Data Factory", "Databricks", "SQL", "Python"],
+      },
+      phd: {
+        title: "PhD Candidate in Computer Science", org: "University of Salerno", short: "PhD · Salerno", when: "Nov 2020 – Mar 2024",
+        items: [
+          "Research in empirical software engineering, focused on software for quantum computers.",
+          "I ran large-scale studies: mining data from GitHub repositories, statistical analysis, qualitative classification.",
+          "I published and presented work at international journals and conferences. The list is on Google Scholar.",
+        ],
+        tech: [],
+      },
+    },
+    techLabel: "Technologies",
+    edu: [
+      { title: "PhD in Computer Science", org: "University of Salerno", when: "2020 – 2024", note: "" },
+      { title: "MSc in Computer Science", org: "University of Salerno", when: "2018 – 2020", note: "110/110 cum laude" },
+    ],
+    skills: [
+      { name: "Quantitative analysis", items: ["Statistical analysis", "Empirical studies", "Survey design", "Metric definition", "Systematic evaluation"] },
+      { name: "Artificial intelligence", items: ["Azure OpenAI", "Vercel AI SDK", "LangChain", "OpenAI SDK", "AI system evaluation (evals)"] },
+      { name: "Data and cloud", items: ["Python", "SQL", "Microsoft Azure", "Azure Data Factory", "Databricks", "ETL", "Docker", "Git"] },
+      { name: "Transferable", items: ["Research and development", "Technical writing", "Conference talks", "Working with analyst teams"] },
+    ],
+    langs: [
+      { name: "Italian", level: "Native" },
+      { name: "English", level: "C1", note: "Exam taken during the PhD" },
+    ],
+    profiles: "Profiles",
+    close: "To get in touch, message me on LinkedIn.",
+  },
+}[lang];
+
+const site = "https://mdestefano.github.io";
+const canonical = lang === "it" ? `${site}/` : `${site}/en/`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{T.title}</title>
+    <meta name="description" content={T.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="it" href={`${site}/`} />
+    <link rel="alternate" hreflang="en" href={`${site}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+    <meta property="og:title" content={T.title} />
+    <meta property="og:description" content={T.description} />
+    <meta property="og:image" content={`${site}/foto-profilo.webp`} />
+    <meta name="theme-color" content="#f4f4f1" />
+    <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="out" viewBox="0 0 16 16"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" /></symbol>
+    </svg>
+
+    <header class="wrap">
+      <nav class="bar box" aria-label={lang === "it" ? "Sezioni" : "Sections"}>
+        <a href="#top" class="mark">MDS</a>
+        <ul class="sections">
+          <li><a href="#esperienza">{T.nav.exp}</a></li>
+          <li><a href="#formazione">{T.nav.edu}</a></li>
+          <li><a href="#competenze">{T.nav.skills}</a></li>
+          <li><a href="#lingue">{T.nav.langs}</a></li>
+        </ul>
+        <a href={T.otherLang.href} hreflang={T.otherLang.href === "/" ? "it" : "en"} lang={T.otherLang.href === "/" ? "it" : "en"} class="lang" aria-label={T.otherLang.name}>{T.otherLang.label}</a>
+      </nav>
+    </header>
+
+    <main class="wrap" id="top">
+      <section class="hero">
+        <div class="photo box">
+          <img src="/foto-profilo.webp" alt="Manuel De Stefano" width="640" height="640" />
+        </div>
+        <div class="who">
+          <h1>Manuel De&nbsp;Stefano, <span class="phd">PhD</span></h1>
+          <p class="plates">
+            <span class="plate orange">{T.role}</span>
+          </p>
+          {T.intro.map((p) => <p class="intro">{p}</p>)}
+          <ul class="profiles" aria-label={T.profiles}>
+            {links.map((l) => (
+              <li><a class="btn" href={l.href} target="_blank" rel="noopener">{l.label}<svg aria-hidden="true"><use href="#out" /></svg></a></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <figure class="gantt box" style={`--today:${pos(now.getFullYear(), now.getMonth() + 1)}`}>
+        <figcaption>{T.timeline}</figcaption>
+        <div class="chart">
+          <ol class="axis mono" aria-hidden="true">
+            {years.map((y) => <li style={`left:${pos(y, 1)}%`}>{y}</li>)}
+          </ol>
+          {[...jobs].reverse().map((j, i) => {
+            const e = T.exp[j.id];
+            const left = pos(j.from[0], j.from[1]);
+            const right = j.to ? pos(j.to[0], j.to[1]) : pos(now.getFullYear(), now.getMonth() + 1);
+            return (
+              <a class="row" href={`#${j.id}`}>
+                <span class="label">{e.short}</span>
+                <span class="track">
+                  <span class={`span ${j.color}`} style={`left:${left}%;width:${right - left}%;--i:${i}`}>
+                    <span class="when mono">{e.when}</span>
+                  </span>
+                </span>
+              </a>
+            );
+          })}
+          <span class="now mono" aria-hidden="true">{T.today}</span>
+        </div>
+      </figure>
+
+      <section id="esperienza" class="block">
+        <h2>{T.nav.exp}</h2>
+        <div class="jobs">
+          {jobs.map((j) => {
+            const e = T.exp[j.id];
+            return (
+              <article id={j.id} class={`job box ${j.color}`}>
+                <header>
+                  <h3>{e.title}</h3>
+                  <p class="org">{e.org}</p>
+                  <p class="date mono">{e.when}</p>
+                </header>
+                <ul class="items">{e.items.map((it) => <li>{it}</li>)}</ul>
+                {e.tech.length > 0 && (
+                  <p class="tech"><span class="sr">{T.techLabel}: </span>{e.tech.map((t) => <span class="chip">{t}</span>)}</p>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section id="formazione" class="block">
+        <h2>{T.nav.edu}</h2>
+        <div class="edu">
+          {T.edu.map((d) => (
+            <article class="degree box">
+              <h3>{d.title}</h3>
+              <p class="org">{d.org}</p>
+              <p class="date mono">{d.when}</p>
+              {d.note && <p class="grade">{d.note}</p>}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="competenze" class="block">
+        <h2>{T.nav.skills}</h2>
+        <dl class="skills">
+          {T.skills.map((s, i) => (
+            <div class={`group ${["cobalt", "orange", "lime", ""][i]}`}>
+              <dt>{s.name}</dt>
+              <dd><ul>{s.items.map((it) => <li class="chip">{it}</li>)}</ul></dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section id="lingue" class="block">
+        <h2>{T.nav.langs}</h2>
+        <dl class="langs">
+          {T.langs.map((l) => (
+            <div class="lng box">
+              <dt>{l.name}</dt>
+              <dd><span class="level">{l.level}</span>{l.note && <span class="note">{l.note}</span>}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p class="sign">Manuel De Stefano</p>
+        <p class="contact">{T.close}</p>
+        <ul class="profiles">
+          {links.map((l) => (
+            <li><a class="btn" href={l.href} target="_blank" rel="noopener">{l.label}<svg aria-hidden="true"><use href="#out" /></svg></a></li>
+          ))}
+        </ul>
+      </div>
+    </footer>
+
+    <style is:global>
+      @font-face { font-family: "Archivo"; src: url(/fonts/archivo.woff2) format("woff2"); font-weight: 400 900; font-display: swap; }
+      @font-face { font-family: "JetBrains Mono"; src: url(/fonts/jetbrains-mono.woff2) format("woff2"); font-weight: 500 700; font-display: swap; }
+      :root {
+        --ground: #f4f4f1;
+        --ink: #111;
+        --paper: #fff;
+        --orange: #ff5a1f;
+        --cobalt: #2b4bff;
+        --lime: #c6f432;
+        --muted: #45453f;
+        --line: 3px solid var(--ink);
+        --shadow: 8px 8px 0 var(--ink);
+        --gap: clamp(16px, 4vw, 64px);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        color-scheme: light;
+        scrollbar-color: var(--ink) var(--ground);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+      body {
+        margin: 0;
+        background: var(--ground);
+        color: var(--ink);
+        font: 400 18px/1.6 "Archivo", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection { background: var(--lime); color: var(--ink); }
+      h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+      ul, ol { list-style: none; }
+      a { color: inherit; }
+      a:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 4px; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+      .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .wrap { max-width: 1312px; margin: 0 auto; padding: 0 var(--gap); }
+      .box { border: var(--line); box-shadow: var(--shadow); background: var(--paper); }
+
+      /* Navigazione */
+      header.wrap { padding-top: 28px; }
+      .bar { display: flex; align-items: center; gap: 24px; padding: 10px 12px 10px 18px; }
+      .mark { font-weight: 700; font-size: 17px; text-decoration: none; letter-spacing: 0.04em; }
+      .sections { display: flex; gap: 4px 22px; margin-left: auto; flex-wrap: wrap; }
+      .sections a { font-weight: 600; font-size: 16px; text-decoration: none; text-underline-offset: 6px; text-decoration-thickness: 3px; }
+      .sections a:hover { text-decoration-line: underline; text-decoration-color: var(--orange); }
+      .lang {
+        background: var(--lime); border: var(--line); padding: 4px 10px; font-weight: 700; font-size: 15px;
+        text-decoration: none; box-shadow: 3px 3px 0 var(--ink);
+        transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease);
+      }
+      .lang:hover { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+
+      /* Apertura */
+      .hero {
+        display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: clamp(28px, 4vw, 56px);
+        padding: clamp(36px, 5vw, 56px) 0 clamp(40px, 5vw, 56px); align-items: start;
+      }
+      .photo { background: var(--cobalt); padding: 16px; }
+      .photo img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border: var(--line); }
+      h1 {
+        font-weight: 900; font-size: clamp(3rem, 7.4vw, 5.75rem); line-height: 0.9; letter-spacing: -0.04em;
+        text-wrap: balance; margin-bottom: 22px;
+      }
+      .phd { color: var(--cobalt); }
+      .plates { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+      .plate { border: var(--line); padding: 5px 14px; font-weight: 800; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.3; }
+      .plate.orange { background: var(--orange); }
+      .intro { max-width: 66ch; margin-bottom: 14px; }
+      .intro + .intro { color: var(--muted); }
+      .profiles { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px; border: var(--line); background: var(--paper);
+        box-shadow: 4px 4px 0 var(--ink); padding: 8px 14px; font-weight: 700; font-size: 16px; text-decoration: none;
+        transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease), background-color 0.12s;
+      }
+      .btn svg { width: 14px; height: 14px; }
+      .btn:hover { background: var(--lime); transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+      .btn:active { background: var(--orange); }
+
+      /* Diagramma della carriera */
+      .gantt { padding: 22px clamp(16px, 2.5vw, 28px) 26px; }
+      figcaption { font-weight: 900; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.02em; margin-bottom: 18px; }
+      .chart { position: relative; --label: clamp(160px, 22vw, 280px); }
+      .axis { position: relative; height: 26px; margin-left: var(--label); font-size: 13px; color: var(--muted); }
+      .axis li { position: absolute; top: 0; padding-left: 6px; border-left: 2px solid var(--ink); line-height: 1.4; }
+      .row {
+        display: grid; grid-template-columns: var(--label) 1fr; align-items: center; min-height: 46px;
+        text-decoration: none; border-top: 2px dashed #c9c9c2;
+      }
+      .row:last-of-type { border-bottom: 2px dashed #c9c9c2; }
+      .label { font-weight: 600; font-size: 16px; padding-right: 16px; line-height: 1.25; }
+      .track { position: relative; height: 34px; }
+      .span {
+        position: absolute; top: 0; height: 100%; border: var(--line); display: flex; align-items: center; overflow: hidden;
+        transform-origin: left center; animation: grow 0.9s var(--ease) calc(0.15s + var(--i) * 0.14s) both;
+        transition: box-shadow 0.12s var(--ease), transform 0.12s var(--ease);
+      }
+      .when { font-size: 12px; font-weight: 700; padding: 0 8px; white-space: nowrap; }
+      .span.cobalt .when { color: #fff; }
+      .row:hover .span, .row:focus-visible .span { box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px, -2px); }
+      .row:hover .label { text-decoration: underline 3px; text-underline-offset: 5px; }
+      .row:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 2px; }
+      .now {
+        position: absolute; top: 26px; bottom: -22px; left: calc(var(--label) + (100% - var(--label)) * var(--today) / 100);
+        border-right: 3px solid var(--orange); padding-right: 6px; transform: translateX(-100%); font-size: 12px; font-weight: 700;
+        display: flex; align-items: flex-end; line-height: 1; pointer-events: none;
+      }
+      @keyframes grow { from { transform: scaleX(0.15); } }
+
+      .orange { --c: var(--orange); }
+      .lime { --c: var(--lime); }
+      .cobalt { --c: var(--cobalt); }
+      .span { background: var(--c); }
+
+      /* Sezioni */
+      .block { padding-top: clamp(64px, 8vw, 104px); }
+      h2 {
+        font-weight: 900; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.95; letter-spacing: -0.04em;
+        margin-bottom: clamp(24px, 3vw, 36px);
+      }
+      h3 { font-weight: 800; font-size: clamp(21px, 2vw, 26px); line-height: 1.15; letter-spacing: -0.01em; }
+      .org { font-weight: 600; color: var(--muted); }
+      .date { font-size: 14px; font-weight: 700; }
+
+      .jobs { display: grid; gap: 32px; }
+      .job { display: grid; grid-template-columns: minmax(240px, 0.8fr) 2fr; scroll-margin-top: 24px; }
+      .job { transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease); }
+      .job:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--ink); }
+      .job > header { grid-row: span 2; background: var(--c); border-right: var(--line); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+      .job .org { color: var(--ink); }
+      .job.cobalt > header { color: #fff; }
+      .job.cobalt .org { color: #e4e8ff; }
+      .job > header .date { margin-top: auto; padding-top: 14px; }
+      .items { padding: 22px 28px 0; display: grid; gap: 10px; max-width: 76ch; }
+      .items li { padding-left: 22px; position: relative; }
+      .items li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 10px; background: var(--ink); }
+      .tech { padding: 18px 28px 24px; display: flex; flex-wrap: wrap; gap: 8px; grid-column: 2; }
+      .job:not(:has(.tech)) .items { padding-bottom: 24px; }
+      .chip { border: 2px solid var(--ink); padding: 2px 10px; font-size: 14px; font-weight: 600; background: var(--ground); line-height: 1.6; }
+      .tech .chip { font-size: 13px; font-weight: 500; }
+      :target.job { animation: flash 1.2s var(--ease); }
+      @keyframes flash { 0%, 30% { box-shadow: 14px 14px 0 var(--c); } }
+
+      .edu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .degree { padding: 22px 24px 24px; display: grid; gap: 6px; align-content: start; }
+      .degree .date { justify-self: start; margin-top: 8px; }
+      .grade { justify-self: start; margin-top: 10px; background: var(--cobalt); color: #fff; border: var(--line); padding: 2px 12px; font-weight: 800; }
+
+      .skills { display: grid; grid-template-columns: repeat(2, 1fr); border: var(--line); box-shadow: var(--shadow); background: var(--paper); }
+      .group { padding: 22px 24px 26px; }
+      .group:nth-child(odd) { border-right: var(--line); }
+      .group:nth-child(n + 3) { border-top: var(--line); }
+      .group dt { font-weight: 800; font-size: 20px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+      .group dt::before { content: ""; width: 16px; height: 16px; border: var(--line); background: var(--c, var(--paper)); }
+      .group ul { display: flex; flex-wrap: wrap; gap: 8px; }
+
+      .langs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .lng { padding: 20px 24px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .lng dt { font-weight: 900; font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.03em; }
+      .lng dd { text-align: right; }
+      .level { display: inline-block; background: var(--ink); color: var(--ground); border: var(--line); padding: 0 12px; font-weight: 800; font-size: 20px; }
+      .note { display: block; font-size: 15px; color: var(--muted); margin-top: 8px; }
+
+      /* Chiusura */
+      .foot { margin-top: clamp(80px, 10vw, 128px); background: var(--ink); color: var(--ground); padding: clamp(48px, 6vw, 72px) 0 56px; }
+      .sign { font-weight: 900; font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.9; letter-spacing: -0.04em; }
+      .contact { margin: 16px 0 6px; color: #d6d6cf; }
+      .foot .btn { color: var(--ink); border-color: var(--ground); box-shadow: 4px 4px 0 var(--lime); }
+      .foot .btn:hover { box-shadow: 0 0 0 var(--lime); }
+      .foot a:focus-visible { outline-color: var(--lime); }
+
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; }
+        .photo { width: min(240px, 60vw); padding: 12px; }
+        .job { grid-template-columns: 1fr; }
+        .job > header { grid-row: auto; border-right: 0; border-bottom: var(--line); }
+        .tech { grid-column: 1; }
+        .edu, .langs, .skills { grid-template-columns: 1fr; }
+        .group:nth-child(odd) { border-right: 0; }
+        .group + .group { border-top: var(--line); }
+        .bar { flex-wrap: wrap; }
+        .sections { order: 3; width: 100%; margin: 0; padding-top: 8px; border-top: 2px dashed #c9c9c2; }
+        .sections { gap: 4px 14px; }
+        .sections a { font-size: 15px; }
+        .lang { margin-left: auto; }
+        .chart { --label: 0px; }
+        .row { grid-template-columns: 1fr; padding: 8px 0 10px; gap: 6px; }
+        .label { font-size: 15px; }
+      }
+      @media (max-width: 520px) {
+        body { font-size: 17px; }
+        .box { box-shadow: 5px 5px 0 var(--ink); }
+        .axis li:nth-child(even) { visibility: hidden; }
+        .when { display: none; }
+        .now { top: 26px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+      }
+    </style>
+  </body>
+</html>

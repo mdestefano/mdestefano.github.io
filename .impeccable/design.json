@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:00Z",
+  "title": "Design System: Manuel De Stefano, PhD",
+  "extensions": {
+    "colorMeta": {
+      "cobalt": { "role": "primary", "displayName": "Cobalto di ricerca", "canonical": "#2b4bff", "tonalRamp": ["#0a1466", "#10208f", "#1a31c2", "#2b4bff", "#5a73ff", "#8b9dff", "#bcc7ff", "#e4e8ff"] },
+      "lime": { "role": "secondary", "displayName": "Lime dati", "canonical": "#c6f432", "tonalRamp": ["#2f3b05", "#4b5e08", "#6f8b0d", "#9cc31a", "#c6f432", "#d6f76e", "#e6faa8", "#f5fde0"] },
+      "orange": { "role": "tertiary", "displayName": "Arancio AI", "canonical": "#ff5a1f", "tonalRamp": ["#5c1a04", "#8a2806", "#c23c0c", "#ff5a1f", "#ff7f52", "#ffa585", "#ffcbb8", "#ffece5"] },
+      "ink": { "role": "neutral", "displayName": "Inchiostro", "canonical": "#111111", "tonalRamp": ["#111111", "#2a2a27", "#45453f", "#6b6b64", "#9a9a92", "#c9c9c2", "#e6e6e1", "#f4f4f1"] },
+      "ground": { "role": "neutral", "displayName": "Carta grezza", "canonical": "#f4f4f1", "tonalRamp": ["#111111", "#2a2a27", "#45453f", "#6b6b64", "#9a9a92", "#c9c9c2", "#e6e6e1", "#f4f4f1"] },
+      "paper": { "role": "neutral", "displayName": "Foglio", "canonical": "#ffffff" },
+      "muted": { "role": "neutral", "displayName": "Grafite", "canonical": "#45453f" },
+      "rule-dashed": { "role": "neutral", "displayName": "Tratteggio", "canonical": "#c9c9c2" },
+      "on-cobalt-soft": { "role": "neutral", "displayName": "Testo secondario su cobalto", "canonical": "#e4e8ff" },
+      "on-ink-soft": { "role": "neutral", "displayName": "Carta su inchiostro", "canonical": "#d6d6cf" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Nome nel primo schermo e firma del piè di pagina." },
+      "headline": { "displayName": "Headline", "purpose": "Titoli di sezione." },
+      "figure-title": { "displayName": "Figure title", "purpose": "Didascalia del diagramma della carriera." },
+      "title": { "displayName": "Title", "purpose": "Titoli di card." },
+      "plate": { "displayName": "Plate", "purpose": "Testo delle targhe colorate." },
+      "body": { "displayName": "Body", "purpose": "Testo corrente; 17px sotto i 520px." },
+      "label": { "displayName": "Label", "purpose": "Bottoni-profilo e navigazione." },
+      "mono-date": { "displayName": "Mono date", "purpose": "Solo date di card e barre." },
+      "mono-axis": { "displayName": "Mono axis", "purpose": "Solo anni dell'asse e etichetta oggi." }
+    },
+    "shadows": [
+      { "name": "tavola", "value": "8px 8px 0 #111", "purpose": "Ogni riquadro a riposo; 5px 5px 0 sotto i 520px." },
+      { "name": "sollevamento", "value": "10px 10px 0 #111", "purpose": "Card dell'esperienza in hover, con translate(-2px, -2px)." },
+      { "name": "bottone", "value": "4px 4px 0 #111", "purpose": "Bottoni-profilo; sul fondo scuro 4px 4px 0 #c6f432." },
+      { "name": "interruttore", "value": "3px 3px 0 #111", "purpose": "Cambio lingua." },
+      { "name": "barra", "value": "4px 4px 0 #111", "purpose": "Barra del diagramma in hover o focus, con translate(-2px, -2px)." },
+      { "name": "lampo", "value": "14px 14px 0 var(--c)", "purpose": "Card raggiunta da un'ancora, 1.2s, nel colore della card." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Unica curva del sistema." },
+      { "name": "state", "value": "0.12s", "purpose": "Hover, pressione, sollevamento." },
+      { "name": "grow", "value": "0.9s, delay 0.15s + 0.14s per barra, da scaleX(0.15)", "purpose": "Crescita delle barre all'apertura." },
+      { "name": "flash", "value": "1.2s", "purpose": "Lampo di arrivo su card raggiunta da ancora." },
+      { "name": "reduced-motion", "value": "animation: none; transition: none", "purpose": "Con prefers-reduced-motion tutto si spegne." }
+    ],
+    "breakpoints": [
+      { "name": "stack", "value": "860px" },
+      { "name": "compact", "value": "520px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Riquadro",
+      "kind": "card",
+      "refersTo": "box",
+      "description": "Contenitore base: foglio, bordo 3px, ombra piena 8px.",
+      "html": "<div class=\"ds-box\"><h3 class=\"ds-box-title\">Laurea Magistrale in Informatica</h3><p class=\"ds-box-org\">Università degli Studi di Salerno</p></div>",
+      "css": ".ds-box { background: #fff; color: #111; border: 3px solid #111; box-shadow: 8px 8px 0 #111; padding: 22px 24px 24px; font-family: Archivo, Helvetica, Arial, sans-serif; max-width: 420px; } .ds-box-title { margin: 0; font-weight: 800; font-size: 24px; line-height: 1.15; letter-spacing: -0.01em; } .ds-box-org { margin: 6px 0 0; font-weight: 600; color: #45453f; }"
+    },
+    {
+      "name": "Targa arancio",
+      "kind": "custom",
+      "refersTo": "plate-orange",
+      "description": "Striscia di colore pieno con bordo 3px; porta il ruolo AI.",
+      "html": "<span class=\"ds-plate\">AI &amp; Data Engineer</span>",
+      "css": ".ds-plate { display: inline-block; background: #ff5a1f; color: #111; border: 3px solid #111; padding: 5px 14px; font: 800 20px/1.3 Archivo, Helvetica, Arial, sans-serif; }"
+    },
+    {
+      "name": "Bottone profilo",
+      "kind": "button",
+      "refersTo": "btn",
+      "description": "Link a un profilo esterno; si preme sulla propria ombra.",
+      "html": "<a class=\"ds-btn\" href=\"#\">LinkedIn<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4 12 12 4M5.5 4H12v6.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 8px; border: 3px solid #111; background: #fff; color: #111; box-shadow: 4px 4px 0 #111; padding: 8px 14px; font: 700 16px Archivo, Helvetica, Arial, sans-serif; text-decoration: none; transition: transform 0.12s cubic-bezier(0.16,1,0.3,1), box-shadow 0.12s cubic-bezier(0.16,1,0.3,1), background-color 0.12s; } .ds-btn svg { width: 14px; height: 14px; } .ds-btn:hover { background: #c6f432; transform: translate(4px, 4px); box-shadow: 0 0 0 #111; } .ds-btn:active { background: #ff5a1f; } .ds-btn:focus-visible { outline: 3px solid #2b4bff; outline-offset: 4px; }"
+    },
+    {
+      "name": "Cambio lingua",
+      "kind": "button",
+      "refersTo": "lang-switch",
+      "description": "Interruttore lime nella barra di navigazione.",
+      "html": "<a class=\"ds-lang\" href=\"#\">EN</a>",
+      "css": ".ds-lang { display: inline-block; background: #c6f432; color: #111; border: 3px solid #111; padding: 4px 10px; font: 700 15px Archivo, Helvetica, Arial, sans-serif; text-decoration: none; box-shadow: 3px 3px 0 #111; transition: transform 0.12s cubic-bezier(0.16,1,0.3,1), box-shadow 0.12s cubic-bezier(0.16,1,0.3,1); } .ds-lang:hover { transform: translate(3px, 3px); box-shadow: 0 0 0 #111; } .ds-lang:focus-visible { outline: 3px solid #2b4bff; outline-offset: 4px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Etichetta statica per competenze e tecnologie.",
+      "html": "<span class=\"ds-chip\">Python</span> <span class=\"ds-chip\">Databricks</span>",
+      "css": ".ds-chip { display: inline-block; border: 2px solid #111; background: #f4f4f1; color: #111; padding: 2px 10px; font: 600 14px/1.6 Archivo, Helvetica, Arial, sans-serif; }"
+    },
+    {
+      "name": "Navigazione",
+      "kind": "nav",
+      "refersTo": "box",
+      "description": "Riquadro con sigla, sezioni e cambio lingua.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-mark\" href=\"#\">MDS</a><a class=\"ds-nav-link\" href=\"#\">Esperienza</a><a class=\"ds-nav-link\" href=\"#\">Formazione</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 22px; padding: 10px 18px; background: #fff; border: 3px solid #111; box-shadow: 8px 8px 0 #111; font-family: Archivo, Helvetica, Arial, sans-serif; color: #111; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav-mark { font-weight: 700; font-size: 17px; letter-spacing: 0.04em; margin-right: auto; } .ds-nav-link { font-weight: 600; font-size: 16px; text-underline-offset: 6px; text-decoration-thickness: 3px; } .ds-nav-link:hover { text-decoration-line: underline; text-decoration-color: #ff5a1f; } .ds-nav a:focus-visible { outline: 3px solid #2b4bff; outline-offset: 4px; }"
+    },
+    {
+      "name": "Card dell'esperienza",
+      "kind": "card",
+      "refersTo": "job-header-lime",
+      "description": "Testata nel colore della legenda, dettagli a destra; si solleva in hover.",
+      "html": "<article class=\"ds-job\"><header class=\"ds-job-head\"><h3>Data Engineer</h3><p>CINECA, Roma</p><p class=\"ds-job-date\">set 2023 – mar 2025</p></header><ul class=\"ds-job-items\"><li>Ho migrato i flussi ETL su Azure Data Factory e Databricks.</li></ul></article>",
+      "css": ".ds-job { display: grid; grid-template-columns: minmax(200px, 0.8fr) 2fr; background: #fff; color: #111; border: 3px solid #111; box-shadow: 8px 8px 0 #111; font: 400 17px/1.6 Archivo, Helvetica, Arial, sans-serif; transition: transform 0.12s cubic-bezier(0.16,1,0.3,1), box-shadow 0.12s cubic-bezier(0.16,1,0.3,1); } .ds-job:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 #111; } .ds-job-head { background: #c6f432; border-right: 3px solid #111; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; } .ds-job-head h3 { margin: 0; font-weight: 800; font-size: 24px; line-height: 1.15; letter-spacing: -0.01em; } .ds-job-head p { margin: 0; font-weight: 600; } .ds-job-date { margin-top: auto !important; padding-top: 14px; font: 700 14px 'JetBrains Mono', ui-monospace, monospace !important; } .ds-job-items { list-style: none; margin: 0; padding: 22px 28px 24px; } .ds-job-items li { position: relative; padding-left: 22px; } .ds-job-items li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 10px; height: 10px; background: #111; }"
+    },
+    {
+      "name": "Diagramma della carriera",
+      "kind": "custom",
+      "refersTo": "timeline-bar",
+      "description": "Barre colorate su asse degli anni; crescono da sinistra.",
+      "html": "<div class=\"ds-tl\"><div class=\"ds-tl-axis\"><span style=\"left:0%\">2020</span><span style=\"left:33%\">2022</span><span style=\"left:66%\">2024</span></div><div class=\"ds-tl-row\"><span class=\"ds-tl-bar\" style=\"left:5%;width:55%;background:#2b4bff;color:#fff\">nov 2020 – mar 2024</span></div><div class=\"ds-tl-row\"><span class=\"ds-tl-bar\" style=\"left:50%;width:25%;background:#c6f432\">set 2023 – mar 2025</span></div><div class=\"ds-tl-row\"><span class=\"ds-tl-bar\" style=\"left:75%;width:22%;background:#ff5a1f\">mar 2025 – oggi</span></div></div>",
+      "css": ".ds-tl { background: #fff; border: 3px solid #111; box-shadow: 8px 8px 0 #111; padding: 20px; color: #111; } .ds-tl-axis { position: relative; height: 26px; font: 500 13px/1.4 'JetBrains Mono', ui-monospace, monospace; color: #45453f; } .ds-tl-axis span { position: absolute; top: 0; padding-left: 6px; border-left: 2px solid #111; } .ds-tl-row { position: relative; height: 46px; border-top: 2px dashed #c9c9c2; } .ds-tl-row:last-child { border-bottom: 2px dashed #c9c9c2; } .ds-tl-bar { position: absolute; top: 6px; height: 34px; border: 3px solid #111; display: flex; align-items: center; padding: 0 8px; overflow: hidden; white-space: nowrap; font: 700 12px 'JetBrains Mono', ui-monospace, monospace; transform-origin: left center; animation: ds-grow 0.9s cubic-bezier(0.16,1,0.3,1) both; transition: box-shadow 0.12s, transform 0.12s; } .ds-tl-bar:hover { box-shadow: 4px 4px 0 #111; transform: translate(-2px, -2px); } @keyframes ds-grow { from { transform: scaleX(0.15); } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La tavola di laboratorio",
+    "overview": "Il sito è un curriculum stampato su una tavola neobrutalista. Il fondo è carta grezza (ground), il disegno è inchiostro nero. Ogni contenuto sta in un riquadro con bordo nero di 3px e un'ombra piena, sfalsata, senza sfocatura. La pagina non usa gradienti, angoli arrotondati o trasparenze.\n\nTre colori pieni portano un significato fisso, come la legenda di un grafico. Il cobalto indica la ricerca e l'università. Il lime indica i dati. L'arancio indica l'AI. Lo stesso colore lega la barra del diagramma, la card dell'esperienza e il gruppo di competenze. Chi legge impara il codice una volta e lo ritrova ovunque.\n\nLa densità è quella di un documento: testo a 18px, righe fino a 66–76 caratteri, sezioni ben separate. Il segno distintivo è il diagramma della carriera: barre colorate su un asse degli anni, con una linea arancio per \"oggi\".",
+    "keyCharacteristics": [
+      "Riquadri bianchi con bordo nero 3px e ombra piena 8px 8px.",
+      "Angoli sempre vivi, mai arrotondati.",
+      "Tre colori con significato fisso: cobalto ricerca, lime dati, arancio AI.",
+      "Archivo 900 compresso per i titoli, JetBrains Mono solo per date e assi.",
+      "Interazione \"a pressione\": l'elemento scivola sulla propria ombra."
+    ],
+    "rules": [
+      { "name": "La Regola della Legenda", "body": "Nei contenuti cobalto, lime e arancio significano solo ricerca/università, dati e AI. Un nuovo elemento prende un colore solo se appartiene a quell'ambito. Ciò che non appartiene a nessun ambito resta neutro: foglio, carta o lastra d'inchiostro (come il gruppo \"Trasversali\", con il quadratino bianco).", "section": "colors" },
+      { "name": "La Regola dello Stato", "body": "Fuori dalla legenda i colori servono solo agli stati d'interazione, sempre con lo stesso ruolo. Lime: hover dei bottoni, cambio lingua, selezione del testo, ombra dei bottoni sul fondo scuro. Arancio: pressione dei bottoni, sottolineatura in hover della navigazione, linea \"oggi\". Cobalto: anello del focus (lime sul fondo scuro).", "section": "colors" },
+      { "name": "La Regola della Lastra Neutra", "body": "Le lastre d'inchiostro (fondo ink, testo ground) non portano significato. Servono a dare peso a un valore, come il livello linguistico.", "section": "colors" },
+      { "name": "La Regola del Monospazio", "body": "JetBrains Mono compare solo su date e assi del diagramma. Titoli, etichette, chip e bottoni usano sempre Archivo.", "section": "typography" },
+      { "name": "La Regola della Compressione", "body": "I titoli da 900 hanno sempre tracking negativo (da -0.02em a -0.04em) e interlinea sotto 1. Il testo corrente resta a tracking normale e interlinea 1.6.", "section": "typography" },
+      { "name": "La Regola della Pressione", "body": "Un elemento cliccabile si preme scivolando sulla propria ombra: trasla di quanto è lunga l'ombra e l'ombra va a zero. Un elemento che porta altrove (card, barra) invece si solleva di 2px e allunga l'ombra.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do chiudere ogni nuovo contenitore in un riquadro: fondo foglio, bordo 3px inchiostro, ombra `8px 8px 0`.",
+      "Do assegnare cobalto, lime o arancio solo secondo la legenda: ricerca/università, dati, AI.",
+      "Do lasciare neutro (foglio, carta o lastra d'inchiostro) ciò che non appartiene a nessun ambito.",
+      "Do mettere testo bianco sul cobalto e testo inchiostro su lime e arancio.",
+      "Do usare JetBrains Mono solo per date e assi.",
+      "Do far premere gli elementi cliccabili sulla propria ombra, in 0.12s con la curva del sistema.",
+      "Do passare a una colonna sotto gli 860px e ridurre l'ombra a 5px sotto i 520px."
+    ],
+    "donts": [
+      "Don't arrotondare gli angoli né ritagliare il ritratto a cerchio.",
+      "Don't usare ombre sfocate, gradienti o trasparenze.",
+      "Don't usare un colore della legenda per decorazione o per un ambito diverso dal suo.",
+      "Don't usare il monospazio per titoli, etichette, chip o bottoni.",
+      "Don't aggiungere un quarto colore saturo."
+    ]
+  }
+}
